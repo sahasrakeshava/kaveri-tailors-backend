@@ -16,9 +16,7 @@ async function createReview(reqData, user) {
 }
 
 async function getAllReview(productId) {
-  const product = await productService.findProductById(reqData.productId);
-
-  return await Review.find({ product: productId }).populate("user");
+  return await Review.find({ product: productId }); //.populate("user");
 }
 module.exports = {
   createReview,

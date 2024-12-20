@@ -10,13 +10,15 @@ const createReview = async (res, req) => {
   }
 };
 
-const getAllReview = async (res, req) => {
+const getAllReview = async (req, res) => {
   const user = req.user;
   const productId = req.params.productId;
   try {
+    console.log("Fetching reviews for product:", productId);
     const reviews = await reviewService.getAllReview(productId);
     return res.status(201).send(reviews);
   } catch (error) {
+    console.error("Error fetching reviews:", error.message);
     return res.status(500).send({ error: error.message });
   }
 };
