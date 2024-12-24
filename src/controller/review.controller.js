@@ -1,20 +1,25 @@
 const reviewService = require("../services/review.service.js");
 
-const createReview = async (res, req) => {
-  const user = req.user;
+const createReview = async (req, res) => {
+  const { productId, review, user } = req.body;
   try {
-    const review = await reviewService.createReview(req.body, user);
-    return res.status(201).send(review);
+    const reviewData = {
+      productId,
+      review,
+      user,
+    };
+    const createdReview = await reviewService.createReview(reviewData);
+    return res.status(201).send(createdReview);
   } catch (error) {
+    console.log("error creating review:", error.message);
     return res.status(500).send({ error: error.message });
   }
 };
 
 const getAllReview = async (req, res) => {
-  const user = req.user;
   const productId = req.params.productId;
+  console.log("productId:", productId);
   try {
-    console.log("Fetching reviews for product:", productId);
     const reviews = await reviewService.getAllReview(productId);
     return res.status(201).send(reviews);
   } catch (error) {

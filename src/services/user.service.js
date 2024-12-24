@@ -34,6 +34,7 @@ const findUserById = async (userId) => {
     throw new Error(error.message);
   }
 };
+
 const getUserByEmail = async (email) => {
   try {
     const user = await User.findOne({ email });
