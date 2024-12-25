@@ -38,9 +38,6 @@ app.use("/api/orders", orderRouter);
 const reviewRouter = require("./routes/review.routes.js");
 app.use("/api/reviews", reviewRouter);
 
-const ratingRouter = require("./routes/rating.routes.js");
-app.use("/api/ratings", ratingRouter);
-
 const adminOrderRouter = require("./routes/adminOrder.routes.js");
 app.use("/api/admin/orders", adminOrderRouter);
 

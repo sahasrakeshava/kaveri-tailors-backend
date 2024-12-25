@@ -7,6 +7,7 @@ async function createReview(reqData) {
   const review = new Review({
     product: product._id,
     review: reqData.review,
+    rating: reqData.rating,
     user: reqData.user,
     createdAt: new Date(),
   });
