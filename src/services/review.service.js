@@ -8,7 +8,7 @@ async function createReview(reqData) {
     product: product._id,
     review: reqData.review,
     rating: reqData.rating,
-    user: reqData.user,
+    user: reqData.user || "675854deca75b7b748d39d12",
     createdAt: new Date(),
   });
 
