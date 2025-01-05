@@ -10,6 +10,9 @@ const orderItemSchema = new Schema({
   size: {
     type: String,
   },
+  title: {
+    type: String,
+  },
   quantity: {
     type: Number,
     required: true,

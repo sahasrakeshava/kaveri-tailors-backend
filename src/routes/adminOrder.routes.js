@@ -3,7 +3,7 @@ const router = express.Router();
 const orderController = require("../controller/adminOrder.controller.js");
 const authenticate = require("../middleware/authenticate.js");
 
-router.get("/", authenticate, orderController.getAllOrders);
+router.get("/", orderController.getAllOrders);
 router.put(
   "/:orderId/confirmed",
   authenticate,

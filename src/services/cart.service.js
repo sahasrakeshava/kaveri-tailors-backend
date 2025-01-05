@@ -64,7 +64,7 @@ async function addCartItem(userId, req) {
 
     const product = await Product.findById(req.productId);
     if (!product) {
-      throw new Error("Product not found");
+      throw new console.error("Product not found");
     }
 
     const isPresent = await CartItem.findOne({
@@ -81,6 +81,7 @@ async function addCartItem(userId, req) {
         userID: userId, // Ensure you use userID
         price: product.price,
         size: req.size,
+        title: req.title,
         discountedPrice: product.discountedPrice,
       });
       const createdCartItem = await cartItem.save();
@@ -90,7 +91,7 @@ async function addCartItem(userId, req) {
     }
     return isPresent;
   } catch (error) {
-    throw new Error(error.message);
+    throw new console.error(error.message);
   }
 }
 

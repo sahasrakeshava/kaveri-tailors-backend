@@ -29,6 +29,7 @@ async function createOrder(user, shippingAddress) {
       product: item.product,
       quantity: item.quantity,
       size: item.size,
+      title: item.title,
       userId: user._id, // Use the user object to set userId
       discountedPrice: item.discountedPrice,
     });
@@ -54,8 +55,8 @@ async function placeOrder(orderId) {
   const order = await findOrderById(orderId);
 
   order.orderStatus = "PLACED";
-  order.paymentDetails.status = "COMPLETED";
-
+  order.paymentDetails.paymentStatus = "COMPLETED";
+  console.log("payment status:", order.paymentDetails.paymentStatus);
   return await order.save();
 }
 
@@ -102,8 +103,12 @@ async function findOrderById(orderId) {
 
 async function usersOrderHistory(userId) {
   try {
-    const orders = await Order.find({ user: userId, orderStatus: "PLACED" })
-      .populate({ path: "orderItems", poppulate: { path: "product" } })
+    console.log("user:", userId);
+    const orders = await Order.find({ user: userId })
+      .populate({
+        path: "orderItems",
+        populate: { path: "product" },
+      })
       .lean();
 
     return orders;

@@ -12,12 +12,12 @@ const findUserCart = async (req, res) => {
 };
 
 const addItemToCart = async (req, res) => {
-  const user = req.user;
-  console.log("User ID:", user._id); // Log the user ID
+  const user = req.body.user;
+  console.log("User ID:", user); // Log the user ID
   console.log("Request Body:", req.body); // Log the request body
 
   try {
-    const cartItem = await cartService.addCartItem(user._id, req.body);
+    const cartItem = await cartService.addCartItem(user, req.body);
     return res.status(200).send(cartItem);
   } catch (error) {
     return res.status(500).send({ error: error.message });
