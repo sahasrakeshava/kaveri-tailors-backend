@@ -7,15 +7,17 @@ const userSchema = new mongoose.Schema({
   },
   lastName: {
     type: String,
-    required: true,
   },
   password: {
     type: String,
-    required: true,
+    required: function () {
+      return !this.googleId; // Password required only if googleId is not set
+    },
   },
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   role: {
     type: String,
@@ -49,9 +51,14 @@ const userSchema = new mongoose.Schema({
       ref: "reviews",
     },
   ],
+  googleId: {
+    type: String,
+    unique: true, // Ensures no duplicate Google IDs
+    sparse: true, // Allows null values
+  },
   createdAt: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
   },
 });
 
