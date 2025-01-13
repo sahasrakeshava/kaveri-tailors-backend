@@ -10,7 +10,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 const corsOptions = {
-  origin: "http://localhost:3000", // Allow requests from localhost:3000
+  origin: "https://kaveri-tailors.vercel.app", // Allow requests from localhost:3000
   methods: "*", // Allow all methods (GET, POST, PUT, DELETE, etc.)
   credentials: true, // Allow cookies and credentials (if needed)
 };
