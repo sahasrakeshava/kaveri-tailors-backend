@@ -51,9 +51,6 @@ const handleGoogleCallback = async (req, res) => {
     // Step 3: Optionally generate a JWT for the authenticated user
     const token = jwtProvider.generateToken(user._id);
 
-    // Step 4: Send the user and token back as the response
-    const resData = { user, token };
-
     // Redirect to the frontend with the user data and token
     // For frontend to receive it, you can redirect to a URL like `localhost:3000?user=<user_data>&token=<jwt_token>`
     res.redirect(

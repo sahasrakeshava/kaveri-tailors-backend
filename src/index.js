@@ -35,7 +35,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "https://kaveri-tailors-backend.up.railway.app/api/users/google/callback",
+      callbackURL: "https://api-kt-bcf1.onrender.com/api/users/google/callback",
       passReqToCallback: true,
     },
     async (request, accessToken, refreshToken, profile, done) => {
@@ -48,6 +48,11 @@ passport.use(
     }
   )
 );
+
+// Add state parameter to Google OAuth flow
+GoogleStrategy.prototype.authorizationParams = function (options) {
+  return { state: "kaveri-tailors" };
+};
 
 // Passport serialization
 passport.serializeUser((user, done) => {
