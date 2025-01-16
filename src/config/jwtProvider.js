@@ -6,7 +6,7 @@ const REFRESH_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
 // Generate an Access Token (JWT) with 48 hours expiration
 const generateToken = (userId) => {
-  const token = jwt.sign({ userId }, SECRET_KEY, { expiresIn: "48h" });
+  const token = jwt.sign({ userId }, SECRET_KEY, { expiresIn: "14d" });
   return token;
 };
 

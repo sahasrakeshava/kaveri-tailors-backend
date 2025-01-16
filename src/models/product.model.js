@@ -35,9 +35,11 @@ const productSchema = new mongoose.Schema({
       quantity: { type: Number },
     },
   ],
-  imageUrl: {
-    type: String,
-  },
+  imageUrl: [
+    {
+      type: String,
+    },
+  ],
   ratings: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -50,10 +52,6 @@ const productSchema = new mongoose.Schema({
       ref: "reviews",
     },
   ],
-  numRatings: {
-    type: Number,
-    default: 0,
-  },
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "categories",

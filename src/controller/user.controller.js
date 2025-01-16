@@ -54,7 +54,7 @@ const handleGoogleCallback = async (req, res) => {
     // Redirect to the frontend with the user data and token
     // For frontend to receive it, you can redirect to a URL like `localhost:3000?user=<user_data>&token=<jwt_token>`
     res.redirect(
-      `https://kaveri-tailors.vercel.app?user=${encodeURIComponent(
+      `http://localhost:3000?user=${encodeURIComponent(
         JSON.stringify(user)
       )}&token=${token}`
     );

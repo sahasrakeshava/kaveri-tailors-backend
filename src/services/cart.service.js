@@ -15,10 +15,9 @@ const mongoose = require("mongoose");
 
 async function findUserCart(userId) {
   try {
-    // Ensure userId is an ObjectId
-    const objectId = new mongoose.Types.ObjectId(userId);
+    console.log(userId);
 
-    let cart = await Cart.findOne({ user: objectId });
+    let cart = await Cart.findOne({ user: userId });
 
     // Check if the cart exists, if not, create a new one
     if (!cart) {

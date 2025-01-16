@@ -10,7 +10,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 const corsOptions = {
-  origin: "https://kaveri-tailors.vercel.app", // Allow requests from localhost:3000
+  origin: "http://localhost:3000", // Allow requests from localhost:3000
   methods: "*", // Allow all methods (GET, POST, PUT, DELETE, etc.)
   credentials: true, // Allow cookies and credentials (if needed)
 };
@@ -35,7 +35,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "https://api-kt-bcf1.onrender.com/api/users/google/callback",
+      callbackURL: "http://localhost:3001/api/users/google/callback",
       passReqToCallback: true,
     },
     async (request, accessToken, refreshToken, profile, done) => {

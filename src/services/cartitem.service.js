@@ -4,11 +4,10 @@ async function updateCartItem(userId, cartItemId, cartItemData) {
   try {
     const item = await findCartItemById(cartItemId);
 
-    const user = await userService.findUserById(item.userID);
+    const user = await userService.findUserById(userId);
     if (!user) {
       throw new Error("user not found :", userId);
     }
-    console.log(item.product);
     if (user._id.toString() === userId.toString()) {
       item.quantity = cartItemData.quantity;
       item.price = item.quantity * item.product.price;

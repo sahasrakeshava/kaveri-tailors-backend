@@ -12,8 +12,7 @@ const authenticate = async (req, res, next) => {
 
     // If not authenticated by Passport, check for JWT
     const token = req.headers.authorization?.split(" ")[1];
-    console.log("JWT token:", token);
-
+    console.log("token:", req.headers.authorization);
     if (!token) {
       return res.status(401).send({ error: "Token not found" });
     }
