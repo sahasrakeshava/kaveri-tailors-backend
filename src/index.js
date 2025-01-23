@@ -35,7 +35,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "https://api-kt-bcf1.onrender.com/api/users/google/callback",
+      callbackURL: "https://api-kt-bcf1/api/users/google/callback",
       passReqToCallback: true,
     },
     async (request, accessToken, refreshToken, profile, done) => {
