@@ -1,5 +1,6 @@
 const userService = require("../services/user.service.js");
 const jwtProvider = require("../config/jwtProvider.js");
+require("dotenv").config();
 
 const getUserProfile = async (req, res) => {
   const jwt = req.headers.authorization?.split(" ")[1];
@@ -50,13 +51,11 @@ const handleGoogleCallback = async (req, res) => {
 
     // Step 3: Optionally generate a JWT for the authenticated user
     const token = jwtProvider.generateToken(user._id);
-
+    const url = process.env.FRONTEND_URL || "https://kaveri-tailors.vercel.app";
     // Redirect to the frontend with the user data and token
     // For frontend to receive it, you can redirect to a URL like `localhost:3000?user=<user_data>&token=<jwt_token>`
     res.redirect(
-      `http://localhost:3000?user=${encodeURIComponent(
-        JSON.stringify(user)
-      )}&token=${token}`
+      `${url}?user=${encodeURIComponent(JSON.stringify(user))}&token=${token}`
     );
   } catch (error) {
     // Step 5: Handle any errors that occur
