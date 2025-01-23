@@ -91,7 +91,9 @@ const findOrCreateGoogleUser = async (googleProfile) => {
     } = googleProfile;
 
     // Check if the user exists based on googleId or email
-    let user = await User.findOne({ $or: [{ googleId }, { email }] });
+    let user = await User.findOne({ $or: [{ googleId }, { email }] }).populate(
+      "address"
+    );
 
     if (!user) {
       // If the user does not exist, create a new user
