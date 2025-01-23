@@ -2,6 +2,7 @@ const razorpay = require("../config/razorypayClient");
 const orderService = require("../services/orderService");
 
 const createPaymentLink = async (orderId) => {
+  const redirectUrl = process.env.FRONTEND_URL;
   try {
     const order = await orderService.findOrderById(orderId);
     const paymentLinkRequest = {
@@ -17,7 +18,7 @@ const createPaymentLink = async (orderId) => {
         email: true,
       },
       reminder_enable: true,
-      callback_url: `http://localhost:3000/payment/${orderId}`,
+      callback_url: `${redirectUrl}/payment/${orderId}`,
       callback_method: "get",
     };
     const paymentLink = await razorpay.paymentLink.create(paymentLinkRequest);
