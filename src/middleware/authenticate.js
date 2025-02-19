@@ -3,6 +3,7 @@ const userService = require("../services/user.service.js");
 
 const authenticate = async (req, res, next) => {
   try {
+    console.log("req.isAuthenticated:", req);
     // Check if Passport has authenticated the user (e.g., via Google OAuth2)
     if (req.isAuthenticated && req.isAuthenticated()) {
       console.log("Authenticated via Google OAuth:", req.user);

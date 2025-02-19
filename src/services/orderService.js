@@ -5,17 +5,15 @@ const cartService = require("../services/cart.service.js");
 
 async function createOrder(user, shippingAddress) {
   let address;
+  console.log("user:", user);
+  console.log("address:", shippingAddress);
 
   if (shippingAddress._id) {
     let existAddress = await Address.findById(shippingAddress._id);
     address = existAddress;
   } else {
     address = new Address(shippingAddress);
-    address.user = user; // Make sure you set the user reference
     await address.save();
-
-    console.log("user.address", user.address);
-
     user.address.push(address);
     await user.save();
   }
@@ -47,6 +45,8 @@ async function createOrder(user, shippingAddress) {
     totalItem: cart.totalItem,
     shippingAddress: address,
   });
+
+  console.log("address:1", address);
   const savedOrder = await createdOrder.save();
   return savedOrder;
 }
